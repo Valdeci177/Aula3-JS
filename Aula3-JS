@@ -1,0 +1,48 @@
+def calcular_estatisticas():
+    # Solicita o número total de estudantes na turma
+    while True:
+        try:
+            total_estudantes = int(input("Digite o número total de estudantes na turma: "))
+            if total_estudantes > 0:
+                break
+            else:
+                print("O número de estudantes deve ser maior que zero. Tente novamente.")
+        except ValueError:
+            print("Por favor, digite um número válido.")
+
+    # Inicializa variáveis
+    soma_notas = 0
+    maior_nota = 0
+    menor_nota = 10 # Assume-se que a nota máxima é 10, pode ser ajustado conforme necessário
+
+    # Coleta as notas dos estudantes
+    for i in range(total_estudantes):
+        while True:
+            try:
+                nota = float(input(f"Digite a nota do aluno {i+1}: "))
+                if 0 <= nota <= 10:
+                    break
+                else:
+                    print("A nota deve estar entre 0 e 10. Tente novamente.")
+            except ValueError:
+                print("Por favor, digite um número válido.")
+        
+        soma_notas += nota
+
+        # Verifica se a nota atual é a maior ou a menor
+        if nota > maior_nota:
+            maior_nota = nota
+        if nota < menor_nota:
+            menor_nota = nota
+
+    # Calcula a média
+    media = soma_notas / total_estudantes
+
+    # Exibe os resultados
+    print(f"\nEstatísticas da turma:")
+    print(f"Média da turma: {media:.2f}")
+    print(f"Maior nota: {maior_nota}")
+    print(f"Menor nota: {menor_nota}")
+
+# Executa a função
+calcular_estatisticas()
